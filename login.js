@@ -16,16 +16,15 @@ createApp({
       axios
         .post(`${api}admin/signin`, this.user)
         .then((res) => {
-          console.log(res.data);
+          alert(res.data.message);
           //取出token存到cookie
           const { token, expired } = res.data;
-          console.log(token, expired);
           document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
           //登入成功進到後台商品頁面
           window.location = "product.html";
         })
         .catch((err) => {
-          console.dir(err);
+          alert(err.data.message);
         });
     },
   },

@@ -15,12 +15,10 @@ createApp({
       axios
         .post(`${api}/api/user/check`)
         .then((res) => {
-          console.log(res.data);
           this.getData();
         })
         .catch((err) => {
-          console.dir(err);
-          alert("請重新登入");
+          alert(err.response.data.message);
           window.location = "login.html";
         });
     },
@@ -28,11 +26,10 @@ createApp({
       axios
         .get(`${api}/api/${path}/admin/products`)
         .then((res) => {
-          console.log(res.data.products);
           this.products = res.data.products;
         })
         .catch((err) => {
-          console.dir(err);
+          alert(err.response.data.message);
         });
     },
     openProduct(item) {
